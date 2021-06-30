@@ -98,7 +98,7 @@
           <error-message name="姓名" class="invalid-feedback"></error-message>
         </div>
         <div class="mb-3">
-          <label for="name" class="form-lable">Email</label>
+          <label for="email" class="form-lable">Email</label>
           <Field
             id="email"
             name="email"
@@ -112,11 +112,11 @@
           <error-message name="email" class="invalid-feedback"></error-message>
         </div>
         <div class="mb-3">
-          <label for="name" class="form-lable">電話</label>
+          <label for="tel" class="form-lable">電話</label>
           <Field
             id="tel"
             name="電話"
-            type="text"
+            type="tel"
             class="form-control"
             :class="{ 'is-invalid': errors['電話'] }"
             placeholder="請輸入 電話"
@@ -126,7 +126,7 @@
           <error-message name="電話" class="invalid-feedback"></error-message>
         </div>
         <div class="mb-3">
-          <label for="name" class="form-lable">地址</label>
+          <label for="address" class="form-lable">地址</label>
           <Field
             id="address"
             name="地址"
@@ -151,7 +151,11 @@
           ></textarea>
         </div>
         <div class="text-end">
-          <button type="submit" class="btn btn-primary">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            :disabled="cart.carts.length === 0"
+          >
             送出訂單
           </button>
         </div>
@@ -273,7 +277,7 @@ export default {
     },
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
-      return phoneNumber.test(value) ? true : '請輸入正確電話號碼'
+      return phoneNumber.test(value) ? true : '電話號碼 需為10碼數字並以09開頭'
     }
   },
   mounted () {
